@@ -1,0 +1,32 @@
+name: Deploy SMPLFY Boilerplate Plugin via FTP
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@4.3.1
+        with:
+          server: ftp.sblik.com
+          port: 21
+          protocol: ftp
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASS }}
+
+          # Local plugin folder
+          local-dir: ./smplfy-boilerplate-plugin/
+
+          # Remote folder on server where plugin must be deployed
+          server-dir: /public_html/wp-content/plugins/smplfy-boilerplate-plugin/
+
+          # OPTIONAL: recommended during first run
+          dry-run: false
