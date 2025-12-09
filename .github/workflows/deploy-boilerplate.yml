@@ -23,7 +23,7 @@ jobs:
           password: ${{ secrets.FTP_PASS }}
 
           # Local plugin folder
-          local-dir: ./smplfy-boilerplate-plugin/
+          local-dir: ./
 
           # Remote folder on server where plugin must be deployed
           server-dir: /public_html/wp-content/plugins/smplfy-boilerplate-plugin/
